@@ -1,4 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/usr/local/lib/python2.7/site-packages/powerline/config_files'
 let g:netrw_dirhist_2='/Users/Tuch/.vim'
+let g:netrw_dirhist_3='/Users/Tuch/Projects/Urcat/website'
+let g:netrw_dirhist_4='/Users/Tuch'
+let g:netrw_dirhist_5='/Users/Tuch/Projects/Urcat/website'
+let g:netrw_dirhist_6='/Users/Tuch/Projects/Urcat/website/api'
+let g:netrw_dirhist_7='/Users/Tuch/Projects/Urcat/website'
+let g:netrw_dirhist_8='/Users/Tuch/.vim/bundle/vim-qfreplace'
+let g:netrw_dirhist_9='/Users/Tuch/.vim/bundle/vim-qfreplace/autoload'
