@@ -5,37 +5,45 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'Raimondi/delimitMate'
-Plugin 'scrooloose/syntastic'
-Plugin 'marijnh/tern_for_vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-fugitive'
-Plugin 'kien/ctrlp.vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'evidens/vim-twig'
-Plugin 'briancollins/vim-jst'
-Plugin 'elzr/vim-json'
-Plugin 'mxw/vim-jsx'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'wavded/vim-stylus'
-Plugin 'groenewege/vim-less'
-Plugin 'bling/vim-airline'
-Plugin 'mattn/emmet-vim'
-Plugin 'scrooloose/nerdtree'
+Plugin 'editorconfig/editorconfig-vim'
+" Plugin 'maksimr/vim-jsbeautify'
+" Plugin 'puppetlabs/puppet-syntax-vim'
+" Plugin 'severin-lemaignan/vim-minimap'
+" Plugin 'terryma/vim-multiple-cursors'
+Plugin 'Chiel92/vim-autoformat'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
-Plugin 'Tuch/vim-easygrep'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'terryma/vim-multiple-cursors'
 Plugin 'MattesGroeger/vim-bookmarks'
+Plugin 'Raimondi/delimitMate'
+Plugin 'Tuch/vim-easygrep'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'alvan/vim-closetag'
-Plugin 'severin-lemaignan/vim-minimap'
-Plugin 'puppetlabs/puppet-syntax-vim'
+Plugin 'bling/vim-airline'
+Plugin 'briancollins/vim-jst'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'elzr/vim-json'
+Plugin 'evidens/vim-twig'
+Plugin 'garbas/vim-snipmate'
+Plugin 'grassdog/tagman.vim'
+Plugin 'groenewege/vim-less'
+Plugin 'ianks/vim-tsx'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'kien/ctrlp.vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'marijnh/tern_for_vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'pmsorhaindo/syntastic-local-eslint.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'tomtom/tlib_vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'wavded/vim-stylus'
+
+
 "Plugin 'matze/vim-move'
 "Plugin 'ap/vim-css-color'
 "Plugin 'msanders/snipmate.vim'
@@ -71,8 +79,8 @@ set fileencodings=utf8,cp1251
 set encoding=utf8
 
 set shiftround
-set softtabstop=4
-set tabstop=4 shiftwidth=4 expandtab
+set softtabstop=2
+set tabstop=2 shiftwidth=2 expandtab
 au FileType json,jade setl sw=2 sts=2 et
 
 set laststatus=2
@@ -109,7 +117,8 @@ set listchars=tab:→→
 "set grepprg=ag\ --nogroup
 "set grepprg=ack
 set grepprg=pt
-set nomagic
+" set nomagic "dit - doesn't work with this option
+set suffixesadd=index.js,index.jsx,.jsx,.js,.less,.css
 colorscheme default
 
 hi SyntasticErrorSign ctermbg=160 ctermfg=15
@@ -139,24 +148,25 @@ let g:ycm_key_list_select_completion = []
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:user_emmet_leader_key = '<leader>,'
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion"
-let g:minimap_highlight='Visual'
-let delimitMate_matchpairs = "(:),[:],{:}"
-"let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.twig,*.jst"
-let g:mta_filetypes = {'html':1, 'xhtml':1, 'xml':1, 'jinja':1, 'twig':1, 'jst':1, 'php':1}
+" let g:minimap_highlight='Visual'
+" let delimitMate_matchpairs = "(:),[:],{:}"
+" let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.twig,*.jst"
+" let g:mta_filetypes = {'html':1, 'xhtml':1, 'xml':1, 'jinja':1, 'twig':1, 'jst':1, 'php':1}
 let g:gitgutter_max_signs=5000
 let g:NERDTreeWinPos = "right"
+let g:NERDCompactSexyComs = 1
+let g:NERDSpaceDelims = 1
+let g:NERDTrimTrailingWhitespace = 1
 
-let g:tagbar_autofocus = 1
-let g:tagbar_type_javascript = {'ctagsbin' : '/usr/local/bin/jsctags'}
+" let g:tagbar_autofocus = 1
+" let g:tagbar_type_javascript = {'ctagsbin' : '/usr/local/bin/jsctags'}
 
 let g:syntastic_check_on_open=1
 let g:syntastic_quiet_messages = { "level": [] }
 let g:syntastic_aggregate_errors = 1
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_error_symbol='E'
 let g:syntastic_warning_symbol='W'
-let g:syntastic_javscript_jslint_args = ""
-let g:syntastic_javascript_jshint_args = '--config /Users/Tuch/.jshintrc'
 let g:syntastic_enable_highlighting=0
 
 let g:EasyGrepAllOptionsInExplorer=1 " don't show advanced greping options
@@ -220,19 +230,17 @@ map <left> <nop>
 map <right> <nop>
 "nnoremap j gj
 "nnoremap k gk
-nmap s <Plug>(easymotion-s)
-nnoremap gf :call CtrlPWithSearchText(expand('<cfile>'), '')<CR>
-nnoremap gF :call CtrlPWithSearchText(expand('<cfile>'), 'MRUFiles')<CR>
+nmap s <Plug>(easymotion-s2)
 "noremap <BS> "_X
 "vnoremap * y :execute ":let @/=@\""<CR> :execute "set hlsearch"<CR>
 "nnoremap * *N
 nmap <silent> ÷ :nohlsearch<CR>
 nnoremap K :ccl<CR>
-nnoremap q :ccl<CR>
-nnoremap q: :ccl<CR>
+"nnoremap q :ccl<CR>
+"nnoremap q: :ccl<CR>
 map "" :reg<CR>
 map <F5> :NERDTreeToggle<CR>
-"map <F6> :TagbarToggle<CR>
+nmap ,n :NERDTreeFind<CR>
 "map <F7> :reg<CR>
 "map <F8> <nop>
 "noremap <F13> :w<CR>
@@ -244,16 +252,12 @@ au FileType vim,html let b:delimitMate_matchpairs = "(:),[:],{:}"
 au BufReadPre *.js let b:javascript_lib_use_jquery = 1
 au BufReadPre *.js let b:javascript_lib_use_underscore = 1
 au BufReadPre *.js let b:javascript_lib_use_angularjs = 1
+au filetype crontab setlocal nobackup nowritebackup
 "au BufWritePost .vimrc source $MYVIMRC
 
 "hack for stop trim noeol of end file
 "au BufWritePre * :set binary | set noeol
 "au BufWritePost * :set nobinary | set eol
-
-function! CtrlPWithSearchText(search_text, ctrlp_command_end)
-    execute ':CtrlP' . a:ctrlp_command_end
-    call feedkeys(a:search_text)
-endfunction
 
 "Restore cursor after file quit
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -276,3 +280,15 @@ else
     let &t_EI .= "\<Esc>[3 q"
     au VimLeave * silent !echo -ne "\033[3 q"
 endif
+
+"map <c-f> :call JsBeautify()<cr>
+" autocmd FileType javascript vnoremap <buffer>  <c-f> :call RangeJsBeautify()<cr>
+" "autocmd FileType javascript vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
+" autocmd FileType json vnoremap <buffer> <c-f> :call RangeJsonBeautify()<cr>
+" autocmd FileType jsx vnoremap <buffer> <c-f> :call RangeJsxBeautify()<cr>
+" autocmd FileType html vnoremap <buffer> <c-f> :call RangeHtmlBeautify()<cr>
+" autocmd FileType css vnoremap <buffer> <c-f> :call RangeCSSBeautify()<cr>
+" au FileType javascript.jsx setlocal sw=2 sts=2 et
+
+let g:jsx_ext_required = 0
+Plugin 'mxw/vim-jsx'
